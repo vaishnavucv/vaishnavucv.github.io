@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Effect Page</title>
+    <style>
+        body {
+            background-color: #2e2e2e;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .warning {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+
+        .url {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        a {
+            color: #ff0000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            window.location.href = "http://localhost:443";
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                window.location.href = "https://localhost:443";
+            }
+        });
+
+        (function() {
+            var beforeUnloadListener = function (event) {
+                window.location.href = "http://localhost:443";
+            };
+
+            window.addEventListener('beforeunload', beforeUnloadListener, { capture: true });
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="warning">Do not use right click or developer mode.</div>
+        <div class="warning">If this happens, you will be auto-logged out or redirected to this page.</div>
+        <div class="warning">Revisit: <a href="http://localhost:443" class="url">http://localhost:443</a></div>
+    </div>
+</body>
+</html>
